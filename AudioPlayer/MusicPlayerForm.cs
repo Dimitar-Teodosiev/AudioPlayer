@@ -3,12 +3,14 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 using NAudio.Wave;
 using TagLib;
 
 namespace AudioPlayer
 {
-    public partial class MusicPlayerForm : Form
+    public partial class MusicPlayerForm : MaterialForm
     {
         private WaveOutEvent outputDevice;
         private AudioFileReader audioFile;
@@ -18,6 +20,7 @@ namespace AudioPlayer
         private bool isShuffle = false;
         private bool isRepeat = false;
         private Random random = new Random();
+        private string[] playlistTest;
 
         public MusicPlayerForm()
         {
@@ -26,6 +29,14 @@ namespace AudioPlayer
             timerSeek.Tick += TimerSeek_Tick;
             timerSeek.Interval = 500;
 
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800,
+                                                              Primary.BlueGrey900,
+                                                              Primary.BlueGrey500,
+                                                              Accent.LightBlue200,
+                                                              TextShade.WHITE);
             trackBarVolume.Value = 50;
             outputDevice.Volume = trackBarVolume.Value / 100f;
 
@@ -37,11 +48,18 @@ namespace AudioPlayer
             try
             {
                 playlist = Directory.GetFiles(musicDirectory)
-                                           .Where(file => file.EndsWith(".mp3") || file.EndsWith(".wav") || file.EndsWith(".mp4"))
+                                           .Where(file =>
+                                           file.EndsWith(".mp3") ||
+                                           file.EndsWith(".wav") ||
+                                           file.EndsWith(".mp4"))
                                            .ToArray();
 
                 listBoxPlaylist.Items.Clear();
-                listBoxPlaylist.Items.AddRange(playlist.Select(Path.GetFileName).ToArray());
+                foreach (var file in playlist)
+                {
+                    listBoxPlaylist.Items.Add(new MaterialListBoxItem(Path.GetFileName(file)));
+                }
+                listBoxPlaylist.Items.Add(new MaterialListBoxItem(""));
             }
             catch (Exception ex)
             {
@@ -77,7 +95,7 @@ namespace AudioPlayer
                     outputDevice.Play();
                     isPlaying = true;
                     UpdateStatusLabel("Now Playing: " + Path.GetFileName(playlist[currentTrackIndex]));
-                    trackBarSeek.Maximum = (int)audioFile.TotalTime.TotalSeconds;
+                    trackBarSeek.RangeMax = (int)audioFile.TotalTime.TotalSeconds;
                     timerSeek.Start();
 
                     LoadAlbumArt(playlist[currentTrackIndex]);
@@ -137,7 +155,6 @@ namespace AudioPlayer
             }
 
             UpdatePlayPauseButtonText();
-            buttonPlayPause.ImageAlign = ContentAlignment.MiddleCenter;
         }
 
         private void UpdatePlayPauseButtonText()
@@ -153,7 +170,7 @@ namespace AudioPlayer
             }
             else
             {
-                PlayTrack((currentTrackIndex + 1) % playlist.Length);
+                PlayTrack((currentTrackIndex + 1 + playlist.Length) % playlist.Length);
             }
         }
         private void UpdateStatusLabel(string text)
@@ -180,7 +197,7 @@ namespace AudioPlayer
             }
         }
 
-        private void trackBarSeek_Scroll(object sender, EventArgs e)
+        private void trackBarSeek_onValueChanged(object sender, int newValue)
         {
             if (audioFile != null)
             {
@@ -210,7 +227,7 @@ namespace AudioPlayer
             }
         }
 
-        private void listBoxPlaylist_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxPlaylist_SelectedIndexChanged(object sender, MaterialListBoxItem selectedItem)
         {
             if (listBoxPlaylist.SelectedIndex != -1)
             {
@@ -218,7 +235,7 @@ namespace AudioPlayer
             }
         }
 
-        private void trackBarVolume_Scroll(object sender, EventArgs e)
+        private void trackBarVolume_onValueChanged(object sender, int newValue)
         {
             outputDevice.Volume = trackBarVolume.Value / 100f;
         }

@@ -29,77 +29,22 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            listBoxPlaylist = new ListBox();
-            buttonNext = new Button();
-            buttonPlayPause = new Button();
-            buttonPrevious = new Button();
-            trackBarSeek = new TrackBar();
             labelStatus = new Label();
-            checkBoxShuffle = new CheckBox();
-            checkBoxRepeat = new CheckBox();
             timerSeek = new System.Windows.Forms.Timer(components);
-            trackBarVolume = new TrackBar();
             pictureBoxAlbumArt = new PictureBox();
             folderBrowserDialog = new FolderBrowserDialog();
-            buttonBrowse = new Button();
-            label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)trackBarSeek).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)trackBarVolume).BeginInit();
+            trackBarVolume = new MaterialSkin.Controls.MaterialSlider();
+            Label = new MaterialSkin.Controls.MaterialLabel();
+            trackBarSeek = new MaterialSkin.Controls.MaterialSlider();
+            listBoxPlaylist = new MaterialSkin.Controls.MaterialListBox();
+            buttonBrowse = new MaterialSkin.Controls.MaterialButton();
+            buttonPrevious = new MaterialSkin.Controls.MaterialButton();
+            buttonNext = new MaterialSkin.Controls.MaterialButton();
+            buttonPlayPause = new MaterialSkin.Controls.MaterialButton();
+            checkBoxShuffle = new MaterialSkin.Controls.MaterialCheckbox();
+            checkBoxRepeat = new MaterialSkin.Controls.MaterialCheckbox();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAlbumArt).BeginInit();
             SuspendLayout();
-            // 
-            // listBoxPlaylist
-            // 
-            listBoxPlaylist.FormattingEnabled = true;
-            listBoxPlaylist.ItemHeight = 15;
-            listBoxPlaylist.Location = new Point(5, -3);
-            listBoxPlaylist.Name = "listBoxPlaylist";
-            listBoxPlaylist.Size = new Size(358, 604);
-            listBoxPlaylist.TabIndex = 0;
-            listBoxPlaylist.SelectedIndexChanged += listBoxPlaylist_SelectedIndexChanged;
-            // 
-            // buttonNext
-            // 
-            buttonNext.Font = new Font("Segoe UI", 50F);
-            buttonNext.Location = new Point(399, 496);
-            buttonNext.Name = "buttonNext";
-            buttonNext.Size = new Size(92, 99);
-            buttonNext.TabIndex = 1;
-            buttonNext.Text = "⏮️";
-            buttonNext.UseVisualStyleBackColor = true;
-            buttonNext.Click += buttonNext_Click;
-            // 
-            // buttonPlayPause
-            // 
-            buttonPlayPause.Font = new Font("Segoe UI", 50F);
-            buttonPlayPause.Location = new Point(741, 496);
-            buttonPlayPause.Name = "buttonPlayPause";
-            buttonPlayPause.Size = new Size(92, 99);
-            buttonPlayPause.TabIndex = 2;
-            buttonPlayPause.Text = "▶️";
-            buttonPlayPause.UseVisualStyleBackColor = true;
-            buttonPlayPause.Click += buttonPlayPause_Click;
-            // 
-            // buttonPrevious
-            // 
-            buttonPrevious.Font = new Font("Segoe UI", 50F);
-            buttonPrevious.Location = new Point(1080, 496);
-            buttonPrevious.Name = "buttonPrevious";
-            buttonPrevious.Size = new Size(92, 99);
-            buttonPrevious.TabIndex = 4;
-            buttonPrevious.Text = "⏭️";
-            buttonPrevious.TextAlign = ContentAlignment.TopCenter;
-            buttonPrevious.UseVisualStyleBackColor = true;
-            buttonPrevious.Click += buttonPrevious_Click;
-            // 
-            // trackBarSeek
-            // 
-            trackBarSeek.Location = new Point(399, 445);
-            trackBarSeek.Maximum = 100;
-            trackBarSeek.Name = "trackBarSeek";
-            trackBarSeek.Size = new Size(773, 45);
-            trackBarSeek.TabIndex = 5;
-            trackBarSeek.Scroll += trackBarSeek_Scroll;
             // 
             // labelStatus
             // 
@@ -107,78 +52,200 @@
             labelStatus.AutoSize = true;
             labelStatus.BackColor = SystemColors.ButtonFace;
             labelStatus.Font = new Font("Segoe UI", 15F);
-            labelStatus.Location = new Point(399, 414);
+            labelStatus.Location = new Point(399, 419);
             labelStatus.Name = "labelStatus";
             labelStatus.Size = new Size(92, 28);
             labelStatus.TabIndex = 6;
             labelStatus.Text = "Waiting...";
             // 
-            // checkBoxShuffle
-            // 
-            checkBoxShuffle.AutoSize = true;
-            checkBoxShuffle.BackColor = SystemColors.ButtonFace;
-            checkBoxShuffle.Font = new Font("Segoe UI", 20F);
-            checkBoxShuffle.Location = new Point(560, 529);
-            checkBoxShuffle.Name = "checkBoxShuffle";
-            checkBoxShuffle.Size = new Size(73, 41);
-            checkBoxShuffle.TabIndex = 7;
-            checkBoxShuffle.Text = "🔀";
-            checkBoxShuffle.UseVisualStyleBackColor = false;
-            checkBoxShuffle.CheckedChanged += checkBoxShuffle_CheckedChanged;
-            // 
-            // checkBoxRepeat
-            // 
-            checkBoxRepeat.AutoSize = true;
-            checkBoxRepeat.BackColor = SystemColors.ButtonFace;
-            checkBoxRepeat.Font = new Font("Segoe UI", 20F);
-            checkBoxRepeat.Location = new Point(928, 529);
-            checkBoxRepeat.Name = "checkBoxRepeat";
-            checkBoxRepeat.Size = new Size(73, 41);
-            checkBoxRepeat.TabIndex = 8;
-            checkBoxRepeat.Text = "🔁";
-            checkBoxRepeat.UseVisualStyleBackColor = false;
-            checkBoxRepeat.CheckedChanged += checkBoxRepeat_CheckedChanged;
-            // 
-            // trackBarVolume
-            // 
-            trackBarVolume.Location = new Point(365, 27);
-            trackBarVolume.Maximum = 100;
-            trackBarVolume.Name = "trackBarVolume";
-            trackBarVolume.Orientation = Orientation.Vertical;
-            trackBarVolume.Size = new Size(45, 460);
-            trackBarVolume.TabIndex = 9;
-            trackBarVolume.Scroll += trackBarVolume_Scroll;
-            // 
             // pictureBoxAlbumArt
             // 
-            pictureBoxAlbumArt.Location = new Point(601, 12);
+            pictureBoxAlbumArt.Location = new Point(635, 67);
             pictureBoxAlbumArt.Name = "pictureBoxAlbumArt";
-            pictureBoxAlbumArt.Size = new Size(376, 387);
+            pictureBoxAlbumArt.Size = new Size(328, 356);
             pictureBoxAlbumArt.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxAlbumArt.TabIndex = 10;
             pictureBoxAlbumArt.TabStop = false;
             // 
+            // trackBarVolume
+            // 
+            trackBarVolume.Depth = 0;
+            trackBarVolume.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            trackBarVolume.Location = new Point(369, 376);
+            trackBarVolume.MouseState = MaterialSkin.MouseState.HOVER;
+            trackBarVolume.Name = "trackBarVolume";
+            trackBarVolume.ShowText = false;
+            trackBarVolume.ShowValue = false;
+            trackBarVolume.Size = new Size(234, 40);
+            trackBarVolume.TabIndex = 14;
+            trackBarVolume.Text = "";
+            trackBarVolume.onValueChanged += trackBarVolume_onValueChanged;
+            // 
+            // Label
+            // 
+            Label.AutoSize = true;
+            Label.BackColor = SystemColors.ActiveCaptionText;
+            Label.Depth = 0;
+            Label.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Label.ForeColor = SystemColors.ControlText;
+            Label.Location = new Point(459, 354);
+            Label.MouseState = MaterialSkin.MouseState.HOVER;
+            Label.Name = "Label";
+            Label.Size = new Size(55, 19);
+            Label.TabIndex = 15;
+            Label.Text = "Volume";
+            // 
+            // trackBarSeek
+            // 
+            trackBarSeek.Depth = 0;
+            trackBarSeek.Dock = DockStyle.Bottom;
+            trackBarSeek.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            trackBarSeek.Location = new Point(360, 563);
+            trackBarSeek.MouseState = MaterialSkin.MouseState.HOVER;
+            trackBarSeek.Name = "trackBarSeek";
+            trackBarSeek.ShowText = false;
+            trackBarSeek.ShowValue = false;
+            trackBarSeek.Size = new Size(861, 40);
+            trackBarSeek.TabIndex = 16;
+            trackBarSeek.Text = "";
+            trackBarSeek.Value = 0;
+            trackBarSeek.onValueChanged += trackBarSeek_onValueChanged;
+            // 
+            // listBoxPlaylist
+            // 
+            listBoxPlaylist.BackColor = Color.White;
+            listBoxPlaylist.BorderColor = Color.LightGray;
+            listBoxPlaylist.Depth = 0;
+            listBoxPlaylist.Dock = DockStyle.Left;
+            listBoxPlaylist.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            listBoxPlaylist.Location = new Point(3, 64);
+            listBoxPlaylist.MouseState = MaterialSkin.MouseState.HOVER;
+            listBoxPlaylist.Name = "listBoxPlaylist";
+            listBoxPlaylist.SelectedIndex = -1;
+            listBoxPlaylist.SelectedItem = null;
+            listBoxPlaylist.Size = new Size(357, 539);
+            listBoxPlaylist.TabIndex = 17;
+            listBoxPlaylist.SelectedIndexChanged += listBoxPlaylist_SelectedIndexChanged;
+            // 
             // buttonBrowse
             // 
-            buttonBrowse.Font = new Font("Segoe UI", 10F);
-            buttonBrowse.Location = new Point(239, 559);
+            buttonBrowse.AutoSize = false;
+            buttonBrowse.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonBrowse.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            buttonBrowse.Depth = 0;
+            buttonBrowse.Font = new Font("Segoe UI", 8F);
+            buttonBrowse.HighEmphasis = true;
+            buttonBrowse.Icon = null;
+            buttonBrowse.Location = new Point(367, 70);
+            buttonBrowse.Margin = new Padding(4, 6, 4, 6);
+            buttonBrowse.MouseState = MaterialSkin.MouseState.HOVER;
             buttonBrowse.Name = "buttonBrowse";
-            buttonBrowse.Size = new Size(124, 42);
-            buttonBrowse.TabIndex = 11;
+            buttonBrowse.NoAccentTextColor = Color.Empty;
+            buttonBrowse.Size = new Size(130, 45);
+            buttonBrowse.TabIndex = 18;
             buttonBrowse.Text = "Select Folder 📁";
+            buttonBrowse.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            buttonBrowse.UseAccentColor = false;
             buttonBrowse.UseVisualStyleBackColor = true;
             buttonBrowse.Click += buttonBrowse_Click;
             // 
-            // label1
+            // buttonPrevious
             // 
-            label1.AutoSize = true;
-            label1.BackColor = SystemColors.ButtonFace;
-            label1.Font = new Font("Segoe UI", 10F);
-            label1.Location = new Point(365, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(55, 19);
-            label1.TabIndex = 12;
-            label1.Text = "Volume";
+            buttonPrevious.AutoSize = false;
+            buttonPrevious.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonPrevious.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            buttonPrevious.Depth = 0;
+            buttonPrevious.Font = new Font("Segoe UI", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            buttonPrevious.HighEmphasis = true;
+            buttonPrevious.Icon = null;
+            buttonPrevious.Location = new Point(399, 199);
+            buttonPrevious.Margin = new Padding(4, 6, 4, 6);
+            buttonPrevious.MouseState = MaterialSkin.MouseState.HOVER;
+            buttonPrevious.Name = "buttonPrevious";
+            buttonPrevious.NoAccentTextColor = Color.Empty;
+            buttonPrevious.Size = new Size(106, 99);
+            buttonPrevious.TabIndex = 19;
+            buttonPrevious.Text = "⏮️";
+            buttonPrevious.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            buttonPrevious.UseAccentColor = false;
+            buttonPrevious.UseVisualStyleBackColor = true;
+            buttonPrevious.Click += buttonPrevious_Click;
+            // 
+            // buttonNext
+            // 
+            buttonNext.AutoSize = false;
+            buttonNext.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonNext.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            buttonNext.Depth = 0;
+            buttonNext.HighEmphasis = true;
+            buttonNext.Icon = null;
+            buttonNext.Location = new Point(1066, 199);
+            buttonNext.Margin = new Padding(4, 6, 4, 6);
+            buttonNext.MouseState = MaterialSkin.MouseState.HOVER;
+            buttonNext.Name = "buttonNext";
+            buttonNext.NoAccentTextColor = Color.Empty;
+            buttonNext.Size = new Size(106, 98);
+            buttonNext.TabIndex = 20;
+            buttonNext.Text = "⏭️";
+            buttonNext.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            buttonNext.UseAccentColor = false;
+            buttonNext.UseVisualStyleBackColor = true;
+            buttonNext.Click += buttonNext_Click;
+            // 
+            // buttonPlayPause
+            // 
+            buttonPlayPause.AutoSize = false;
+            buttonPlayPause.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonPlayPause.BackgroundImageLayout = ImageLayout.None;
+            buttonPlayPause.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            buttonPlayPause.Depth = 0;
+            buttonPlayPause.Font = new Font("Segoe UI", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            buttonPlayPause.HighEmphasis = true;
+            buttonPlayPause.Icon = null;
+            buttonPlayPause.Location = new Point(725, 455);
+            buttonPlayPause.Margin = new Padding(4, 6, 4, 6);
+            buttonPlayPause.MouseState = MaterialSkin.MouseState.HOVER;
+            buttonPlayPause.Name = "buttonPlayPause";
+            buttonPlayPause.NoAccentTextColor = Color.Empty;
+            buttonPlayPause.Size = new Size(105, 100);
+            buttonPlayPause.TabIndex = 21;
+            buttonPlayPause.Text = "Play";
+            buttonPlayPause.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            buttonPlayPause.UseAccentColor = false;
+            buttonPlayPause.UseVisualStyleBackColor = true;
+            buttonPlayPause.Click += buttonPlayPause_Click;
+            // 
+            // checkBoxShuffle
+            // 
+            checkBoxShuffle.Depth = 0;
+            checkBoxShuffle.Location = new Point(635, 455);
+            checkBoxShuffle.Margin = new Padding(0);
+            checkBoxShuffle.MouseLocation = new Point(-1, -1);
+            checkBoxShuffle.MouseState = MaterialSkin.MouseState.HOVER;
+            checkBoxShuffle.Name = "checkBoxShuffle";
+            checkBoxShuffle.ReadOnly = false;
+            checkBoxShuffle.Ripple = true;
+            checkBoxShuffle.Size = new Size(50, 40);
+            checkBoxShuffle.TabIndex = 22;
+            checkBoxShuffle.Text = "🔀";
+            checkBoxShuffle.UseVisualStyleBackColor = true;
+            checkBoxShuffle.CheckedChanged += checkBoxShuffle_CheckedChanged;
+            // 
+            // checkBoxRepeat
+            // 
+            checkBoxRepeat.Depth = 0;
+            checkBoxRepeat.Location = new Point(913, 455);
+            checkBoxRepeat.Margin = new Padding(0);
+            checkBoxRepeat.MouseLocation = new Point(-1, -1);
+            checkBoxRepeat.MouseState = MaterialSkin.MouseState.HOVER;
+            checkBoxRepeat.Name = "checkBoxRepeat";
+            checkBoxRepeat.ReadOnly = false;
+            checkBoxRepeat.Ripple = true;
+            checkBoxRepeat.Size = new Size(50, 40);
+            checkBoxRepeat.TabIndex = 23;
+            checkBoxRepeat.Text = "🔁";
+            checkBoxRepeat.UseVisualStyleBackColor = true;
+            checkBoxRepeat.CheckedChanged += checkBoxRepeat_CheckedChanged;
             // 
             // MusicPlayerForm
             // 
@@ -186,45 +253,41 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(1224, 606);
-            Controls.Add(labelStatus);
-            Controls.Add(label1);
-            Controls.Add(buttonBrowse);
-            Controls.Add(trackBarSeek);
-            Controls.Add(pictureBoxAlbumArt);
-            Controls.Add(trackBarVolume);
             Controls.Add(checkBoxRepeat);
             Controls.Add(checkBoxShuffle);
-            Controls.Add(buttonPrevious);
             Controls.Add(buttonPlayPause);
             Controls.Add(buttonNext);
+            Controls.Add(buttonPrevious);
+            Controls.Add(buttonBrowse);
+            Controls.Add(trackBarSeek);
+            Controls.Add(Label);
+            Controls.Add(trackBarVolume);
+            Controls.Add(labelStatus);
+            Controls.Add(pictureBoxAlbumArt);
             Controls.Add(listBoxPlaylist);
-            Enabled = false;
             MaximizeBox = false;
             Name = "MusicPlayerForm";
-            Text = "Player";
+            Text = "Audiofy";
             Load += MusicPlayerForm_Load;
-            ((System.ComponentModel.ISupportInitialize)trackBarSeek).EndInit();
-            ((System.ComponentModel.ISupportInitialize)trackBarVolume).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAlbumArt).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ListBox listBoxPlaylist;
-        private Button buttonNext;
-        private Button buttonPlayPause;
-        private Button buttonPrevious;
-        private TrackBar trackBarSeek;
         private Label labelStatus;
-        private CheckBox checkBoxShuffle;
-        private CheckBox checkBoxRepeat;
         private System.Windows.Forms.Timer timerSeek;
-        private TrackBar trackBarVolume;
         private PictureBox pictureBoxAlbumArt;
-        private Label label1;
         private FolderBrowserDialog folderBrowserDialog;
-        private Button buttonBrowse;
+        private MaterialSkin.Controls.MaterialSlider trackBarVolume;
+        private MaterialSkin.Controls.MaterialLabel Label;
+        private MaterialSkin.Controls.MaterialSlider trackBarSeek;
+        private MaterialSkin.Controls.MaterialListBox listBoxPlaylist;
+        private MaterialSkin.Controls.MaterialButton buttonBrowse;
+        private MaterialSkin.Controls.MaterialButton buttonPrevious;
+        private MaterialSkin.Controls.MaterialButton buttonNext;
+        private MaterialSkin.Controls.MaterialButton buttonPlayPause;
+        private MaterialSkin.Controls.MaterialCheckbox checkBoxShuffle;
+        private MaterialSkin.Controls.MaterialCheckbox checkBoxRepeat;
     }
 }
