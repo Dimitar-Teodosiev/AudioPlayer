@@ -20,14 +20,14 @@ namespace AudioPlayer
         private bool isShuffle = false;
         private bool isRepeat = false;
         private Random random = new Random();
-        private string[] playlistTest;
 
         public MusicPlayerForm()
         {
             InitializeComponent();
             outputDevice = new WaveOutEvent();
             timerSeek.Tick += TimerSeek_Tick;
-            timerSeek.Interval = 500;
+            timerSeek.Interval = 100;
+
 
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
@@ -37,10 +37,31 @@ namespace AudioPlayer
                                                               Primary.BlueGrey500,
                                                               Accent.LightBlue200,
                                                               TextShade.WHITE);
+            this.Icon = new Icon(@"..\..\..\Pictures\AudioPlayer.ico");
+            this.AutoScaleMode = AutoScaleMode.Font;
+
+            PictureBoxPlayPause.SizeMode = PictureBoxSizeMode.Zoom;
+
+            pictureBoxAlbumArt.Image = Image.FromFile(@"..\..\..\Pictures\GoTo.png");
+
+            PictureBoxNext.Image = Image.FromFile(@"..\..\..\Pictures\next.png");
+            PictureBoxNext.SizeMode = PictureBoxSizeMode.Zoom;
+
+            PictureBoxPrevious.Image = Image.FromFile(@"..\..\..\Pictures\previous.png");
+            PictureBoxPrevious.SizeMode = PictureBoxSizeMode.Zoom;
+
+            PictureBoxShuffle.Image = Image.FromFile(@"..\..\..\Pictures\shuffle.png");
+            PictureBoxShuffle.SizeMode = PictureBoxSizeMode.Zoom;
+
+            PictureBoxRepeat.Image = Image.FromFile(@"..\..\..\Pictures\repeat.png");
+            PictureBoxRepeat.SizeMode = PictureBoxSizeMode.Zoom;
+
+
             trackBarVolume.Value = 50;
             outputDevice.Volume = trackBarVolume.Value / 100f;
 
-            UpdatePlayPauseButtonText();
+
+            UpdatePlayPauseImage();
         }
 
         private void LoadPlaylist(string musicDirectory)
@@ -73,7 +94,7 @@ namespace AudioPlayer
         {
             try
             {
-                if (index >= 0 && index < playlist.Length)
+                if (index >= 0 && index <= playlist.Length)
                 {
                     // Stop and dispose of the current playback
                     if (outputDevice != null)
@@ -88,6 +109,8 @@ namespace AudioPlayer
                         audioFile.Dispose();
                     }
 
+
+
                     // Load the new track
                     currentTrackIndex = index;
                     audioFile = new AudioFileReader(playlist[currentTrackIndex]);
@@ -99,7 +122,7 @@ namespace AudioPlayer
                     timerSeek.Start();
 
                     LoadAlbumArt(playlist[currentTrackIndex]);
-                    UpdatePlayPauseButtonText();
+                    UpdatePlayPauseImage();
                 }
             }
             catch (Exception ex)
@@ -123,7 +146,7 @@ namespace AudioPlayer
                 }
                 else
                 {
-                    pictureBoxAlbumArt.Image = null;
+                    pictureBoxAlbumArt.Image = Image.FromFile(@"..\..\..\Pictures\GoTo.png");
                 }
             }
             catch (Exception ex)
@@ -142,24 +165,33 @@ namespace AudioPlayer
             }
             else
             {
-                if (audioFile == null && playlist.Length > 0)
+                try
                 {
-                    PlayTrack(0);
-                }
-                else
-                {
-                    outputDevice.Play();
-                    isPlaying = true;
-                    UpdateStatusLabel("Now Playing: " + Path.GetFileName(playlist[currentTrackIndex]));
-                }
-            }
 
-            UpdatePlayPauseButtonText();
+                    if (audioFile == null && playlist.Length > 0)
+                    {
+                        PlayTrack(0);
+                    }
+                    else
+                    {
+                        outputDevice.Play();
+                        isPlaying = true;
+                        UpdateStatusLabel("Now Playing: " + Path.GetFileName(playlist[currentTrackIndex]));
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Please select a folder");
+                }
+
+
+            }
+            UpdatePlayPauseImage();
         }
 
-        private void UpdatePlayPauseButtonText()
+        private void UpdatePlayPauseImage()
         {
-            buttonPlayPause.Text = isPlaying ? "▶️" : "⏸️";
+            PictureBoxPlayPause.Image = isPlaying ? Image.FromFile(@"..\..\..\Pictures\Pause.png") : Image.FromFile(@"..\..\..\Pictures\Play.png");
         }
 
         private void buttonNext_Click(object sender, EventArgs e)
@@ -213,7 +245,8 @@ namespace AudioPlayer
                 UpdateStatusLabel($"Now Playing: {Path.GetFileName(playlist[currentTrackIndex])} - {audioFile.CurrentTime:mm\\:ss} / {audioFile.TotalTime:mm\\:ss}");
 
                 // Automatically play the next track if repeat is enabled
-                if (audioFile.CurrentTime >= audioFile.TotalTime)
+                double threshold = 0.1;
+                if (audioFile.TotalTime.TotalSeconds - audioFile.CurrentTime.TotalSeconds <= threshold)
                 {
                     if (isRepeat)
                     {
@@ -278,6 +311,21 @@ namespace AudioPlayer
         private void MusicPlayerForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void PictureBoxPrevious_Click(object sender, EventArgs e)
+        {
+            buttonPrevious_Click(sender, e);
+        }
+
+        private void PictureBoxNext_Click(object sender, EventArgs e)
+        {
+            buttonNext_Click(sender, e);
+        }
+
+        private void PictureBoxPlayPause_Click(object sender, EventArgs e)
+        {
+            buttonPlayPause_Click(sender, e);
         }
     }
 }

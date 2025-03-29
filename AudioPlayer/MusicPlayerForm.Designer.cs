@@ -43,7 +43,17 @@
             buttonPlayPause = new MaterialSkin.Controls.MaterialButton();
             checkBoxShuffle = new MaterialSkin.Controls.MaterialCheckbox();
             checkBoxRepeat = new MaterialSkin.Controls.MaterialCheckbox();
+            PictureBoxPrevious = new PictureBox();
+            PictureBoxNext = new PictureBox();
+            PictureBoxPlayPause = new PictureBox();
+            PictureBoxShuffle = new PictureBox();
+            PictureBoxRepeat = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAlbumArt).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxPrevious).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxNext).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxPlayPause).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxShuffle).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxRepeat).BeginInit();
             SuspendLayout();
             // 
             // labelStatus
@@ -60,9 +70,9 @@
             // 
             // pictureBoxAlbumArt
             // 
-            pictureBoxAlbumArt.Location = new Point(635, 67);
+            pictureBoxAlbumArt.Location = new Point(635, 64);
             pictureBoxAlbumArt.Name = "pictureBoxAlbumArt";
-            pictureBoxAlbumArt.Size = new Size(328, 356);
+            pictureBoxAlbumArt.Size = new Size(328, 346);
             pictureBoxAlbumArt.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxAlbumArt.TabIndex = 10;
             pictureBoxAlbumArt.TabStop = false;
@@ -100,12 +110,12 @@
             trackBarSeek.Depth = 0;
             trackBarSeek.Dock = DockStyle.Bottom;
             trackBarSeek.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            trackBarSeek.Location = new Point(360, 563);
+            trackBarSeek.Location = new Point(360, 562);
             trackBarSeek.MouseState = MaterialSkin.MouseState.HOVER;
             trackBarSeek.Name = "trackBarSeek";
             trackBarSeek.ShowText = false;
             trackBarSeek.ShowValue = false;
-            trackBarSeek.Size = new Size(861, 40);
+            trackBarSeek.Size = new Size(862, 40);
             trackBarSeek.TabIndex = 16;
             trackBarSeek.Text = "";
             trackBarSeek.Value = 0;
@@ -123,7 +133,7 @@
             listBoxPlaylist.Name = "listBoxPlaylist";
             listBoxPlaylist.SelectedIndex = -1;
             listBoxPlaylist.SelectedItem = null;
-            listBoxPlaylist.Size = new Size(357, 539);
+            listBoxPlaylist.Size = new Size(357, 538);
             listBoxPlaylist.TabIndex = 17;
             listBoxPlaylist.SelectedIndexChanged += listBoxPlaylist_SelectedIndexChanged;
             // 
@@ -202,7 +212,7 @@
             buttonPlayPause.Font = new Font("Segoe UI", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
             buttonPlayPause.HighEmphasis = true;
             buttonPlayPause.Icon = null;
-            buttonPlayPause.Location = new Point(725, 455);
+            buttonPlayPause.Location = new Point(752, 454);
             buttonPlayPause.Margin = new Padding(4, 6, 4, 6);
             buttonPlayPause.MouseState = MaterialSkin.MouseState.HOVER;
             buttonPlayPause.Name = "buttonPlayPause";
@@ -218,41 +228,89 @@
             // checkBoxShuffle
             // 
             checkBoxShuffle.Depth = 0;
-            checkBoxShuffle.Location = new Point(635, 455);
+            checkBoxShuffle.Location = new Point(656, 529);
             checkBoxShuffle.Margin = new Padding(0);
             checkBoxShuffle.MouseLocation = new Point(-1, -1);
             checkBoxShuffle.MouseState = MaterialSkin.MouseState.HOVER;
             checkBoxShuffle.Name = "checkBoxShuffle";
             checkBoxShuffle.ReadOnly = false;
             checkBoxShuffle.Ripple = true;
-            checkBoxShuffle.Size = new Size(50, 40);
+            checkBoxShuffle.Size = new Size(36, 30);
             checkBoxShuffle.TabIndex = 22;
-            checkBoxShuffle.Text = "🔀";
             checkBoxShuffle.UseVisualStyleBackColor = true;
             checkBoxShuffle.CheckedChanged += checkBoxShuffle_CheckedChanged;
             // 
             // checkBoxRepeat
             // 
             checkBoxRepeat.Depth = 0;
-            checkBoxRepeat.Location = new Point(913, 455);
+            checkBoxRepeat.Location = new Point(909, 529);
             checkBoxRepeat.Margin = new Padding(0);
             checkBoxRepeat.MouseLocation = new Point(-1, -1);
             checkBoxRepeat.MouseState = MaterialSkin.MouseState.HOVER;
             checkBoxRepeat.Name = "checkBoxRepeat";
             checkBoxRepeat.ReadOnly = false;
+            checkBoxRepeat.RightToLeft = RightToLeft.Yes;
             checkBoxRepeat.Ripple = true;
-            checkBoxRepeat.Size = new Size(50, 40);
+            checkBoxRepeat.Size = new Size(36, 30);
             checkBoxRepeat.TabIndex = 23;
-            checkBoxRepeat.Text = "🔁";
             checkBoxRepeat.UseVisualStyleBackColor = true;
             checkBoxRepeat.CheckedChanged += checkBoxRepeat_CheckedChanged;
+            // 
+            // PictureBoxPrevious
+            // 
+            PictureBoxPrevious.Location = new Point(397, 199);
+            PictureBoxPrevious.Name = "PictureBoxPrevious";
+            PictureBoxPrevious.Size = new Size(108, 99);
+            PictureBoxPrevious.TabIndex = 24;
+            PictureBoxPrevious.TabStop = false;
+            PictureBoxPrevious.Click += PictureBoxPrevious_Click;
+            // 
+            // PictureBoxNext
+            // 
+            PictureBoxNext.ImageLocation = "";
+            PictureBoxNext.Location = new Point(1066, 197);
+            PictureBoxNext.Name = "PictureBoxNext";
+            PictureBoxNext.Size = new Size(108, 100);
+            PictureBoxNext.TabIndex = 25;
+            PictureBoxNext.TabStop = false;
+            PictureBoxNext.Click += PictureBoxNext_Click;
+            // 
+            // PictureBoxPlayPause
+            // 
+            PictureBoxPlayPause.Location = new Point(752, 454);
+            PictureBoxPlayPause.Name = "PictureBoxPlayPause";
+            PictureBoxPlayPause.Size = new Size(105, 100);
+            PictureBoxPlayPause.TabIndex = 26;
+            PictureBoxPlayPause.TabStop = false;
+            PictureBoxPlayPause.Click += PictureBoxPlayPause_Click;
+            // 
+            // PictureBoxShuffle
+            // 
+            PictureBoxShuffle.Location = new Point(635, 454);
+            PictureBoxShuffle.Name = "PictureBoxShuffle";
+            PictureBoxShuffle.Size = new Size(75, 75);
+            PictureBoxShuffle.TabIndex = 27;
+            PictureBoxShuffle.TabStop = false;
+            // 
+            // PictureBoxRepeat
+            // 
+            PictureBoxRepeat.Location = new Point(888, 454);
+            PictureBoxRepeat.Name = "PictureBoxRepeat";
+            PictureBoxRepeat.Size = new Size(75, 75);
+            PictureBoxRepeat.TabIndex = 28;
+            PictureBoxRepeat.TabStop = false;
             // 
             // MusicPlayerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
-            ClientSize = new Size(1224, 606);
+            ClientSize = new Size(1225, 605);
+            Controls.Add(PictureBoxRepeat);
+            Controls.Add(PictureBoxShuffle);
+            Controls.Add(PictureBoxPlayPause);
+            Controls.Add(PictureBoxNext);
+            Controls.Add(PictureBoxPrevious);
             Controls.Add(checkBoxRepeat);
             Controls.Add(checkBoxShuffle);
             Controls.Add(buttonPlayPause);
@@ -270,6 +328,11 @@
             Text = "Audiofy";
             Load += MusicPlayerForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBoxAlbumArt).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxPrevious).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxNext).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxPlayPause).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxShuffle).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxRepeat).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -289,5 +352,10 @@
         private MaterialSkin.Controls.MaterialButton buttonPlayPause;
         private MaterialSkin.Controls.MaterialCheckbox checkBoxShuffle;
         private MaterialSkin.Controls.MaterialCheckbox checkBoxRepeat;
+        private PictureBox PictureBoxPrevious;
+        private PictureBox PictureBoxNext;
+        private PictureBox PictureBoxPlayPause;
+        private PictureBox PictureBoxShuffle;
+        private PictureBox PictureBoxRepeat;
     }
 }
