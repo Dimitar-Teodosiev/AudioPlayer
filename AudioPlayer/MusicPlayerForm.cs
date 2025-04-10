@@ -244,7 +244,6 @@ namespace AudioPlayer
                 trackBarSeek.Value = (int)audioFile.CurrentTime.TotalSeconds;
                 UpdateStatusLabel($"Now Playing: {Path.GetFileName(playlist[currentTrackIndex])} - {audioFile.CurrentTime:mm\\:ss} / {audioFile.TotalTime:mm\\:ss}");
 
-                // Automatically play the next track if repeat is enabled
                 double threshold = 0.1;
                 if (audioFile.TotalTime.TotalSeconds - audioFile.CurrentTime.TotalSeconds <= threshold)
                 {
@@ -315,17 +314,17 @@ namespace AudioPlayer
 
         private void PictureBoxPrevious_Click(object sender, EventArgs e)
         {
-            buttonPrevious_Click(sender, e);
+            buttonPrevious_Click(null, null);
         }
 
         private void PictureBoxNext_Click(object sender, EventArgs e)
         {
-            buttonNext_Click(sender, e);
+            buttonNext_Click(null, null);
         }
 
         private void PictureBoxPlayPause_Click(object sender, EventArgs e)
         {
-            buttonPlayPause_Click(sender, e);
+            buttonPlayPause_Click(null, null);
         }
     }
 }
